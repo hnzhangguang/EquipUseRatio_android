@@ -8,6 +8,11 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class CircleView extends TextView {
 
 	public void setColor(int color) {
