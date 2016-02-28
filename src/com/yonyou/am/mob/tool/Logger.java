@@ -16,7 +16,7 @@ import android.os.Environment;
  * "",修改文件记录的目录(默认为log), 根目录为/sdcard/Android/data/(package
  * name)/;调用Logger.max_file_count = 3,设置生成的日志文件保存的最大数量 (每天只生成一个日志文件)。
  * 
- * @author hujieh -aa bb
+ * @author hujieh -aa bb vv
  * 
  */
 
