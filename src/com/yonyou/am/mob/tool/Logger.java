@@ -12,10 +12,11 @@ import android.content.Context;
 import android.os.Environment;
 
 /**
- * 将日志记录在文件中，调用Logger.islog = true,(默认打开)打开开关;调用Logger.dir = "",修改文件记录的目录(默认为log), 根目录为/sdcard/Android/data/(package
+ * 将日志记录在文件中，调用Logger.islog = true,(默认打开)打开开关;调用Logger.dir =
+ * "",修改文件记录的目录(默认为log), 根目录为/sdcard/Android/data/(package
  * name)/;调用Logger.max_file_count = 3,设置生成的日志文件保存的最大数量 (每天只生成一个日志文件)。
  * 
- * @author hujieh
+ * @author hujieh -aa
  * 
  */
 
@@ -52,8 +53,8 @@ public class Logger {
 
 	private static void saveInFile(Context context, String fileName, String message) {
 		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			String path = context.getApplicationContext().getExternalFilesDir(null) + File.separator + dir
-					+ File.separator;
+			String path = context.getApplicationContext().getExternalFilesDir(null)
+					+ File.separator + dir + File.separator;
 			File fileDir = new File(path);
 			if (!fileDir.exists()) {
 				fileDir.mkdirs();
