@@ -24,7 +24,7 @@ import org.json.JSONObject;
 /**
  * 本类功能:AmMobUtils工具类
  * 
- * @author zhangg
+ * @author zhangguang
  */
 public class AmMobUtils {
 
