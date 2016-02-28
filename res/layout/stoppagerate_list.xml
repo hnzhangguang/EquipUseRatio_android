@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@color/white">
+
+    <!-- date -->
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        layout="@layout/dateselectview"
+        android:orientation="vertical" />
+
+    <com.yonyou.am.mob.view.SearchViewPlus
+        android:id="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:overScrollMode="never">
+
+            <TableLayout
+                android:id="@+id/tablelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+            </TableLayout>
+        </ScrollView>
+
+        <View
+            android:id="@+id/cover_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11000000" 
+            android:visibility="visible"/>
+    </FrameLayout>
+
+</LinearLayout>

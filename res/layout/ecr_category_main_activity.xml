@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:textcircle="http://schemas.android.com/apk/res/com.yonyou.am.mob.equipinuseratio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical" 
+    android:background="@color/white"
+    android:id="@+id/totallinear"
+    >
+   	<LinearLayout 
+   	    android:id="@+id/ciclelayout"
+   	    android:layout_width="match_parent"
+   	    android:layout_height="160dp"
+   	    android:orientation="horizontal"
+   	    android:gravity="center"
+   	    android:background="@color/white">
+   	    <com.yonyou.am.mob.tool.DoubleTextCircle
+		    android:id="@+id/circle_left"
+		    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+		    textcircle:circle_color="@color/orange"
+		    textcircle:circle_radius="42dp"
+		    textcircle:first_text="60"
+		    textcircle:second_text="完好台数"
+		    textcircle:textsize="17sp"
+		    />
+   	    <TextView
+   	        android:id="@+id/transtext"
+   	        android:layout_width="8dp"
+   	        android:layout_height="1dp"
+   	        android:visibility="invisible"
+   	        />  "
+		<com.yonyou.am.mob.tool.DoubleTextCircle
+		    android:id="@+id/circle_middle"
+		    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+		    textcircle:circle_color="@color/middlecicle"
+		    textcircle:circle_radius="70dp"
+		    textcircle:first_text="53.3%"
+		    textcircle:second_text="完好率"
+		    textcircle:textsize="24sp"
+		    />
+		<TextView
+   	        android:layout_width="8dp"
+   	        android:layout_height="1dp"/>    
+        <com.yonyou.am.mob.tool.DoubleTextCircle
+		    android:id="@+id/circle_right"
+		    android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+		    textcircle:circle_color="@color/rightcicle"
+		    textcircle:circle_radius="42dp"
+		    textcircle:first_text="55"
+		    textcircle:second_text="不完好台数"
+		    textcircle:textsize="15sp"
+		    
+		    />
+    </LinearLayout>
+    
+   	
+   	<HorizontalScrollView 
+   	    android:id="@+id/horizontalscroll"
+   	    android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+   	    >
+   	    <com.yonyou.am.mob.tool.CustomShowBar_V
+   	        android:id="@+id/showbar"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"/>
+   	    
+   	    
+   	    
+   	</HorizontalScrollView>
+ 
+        
+            
+            
+             
+</LinearLayout>

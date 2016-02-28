@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="gbk">
+    <title>ECharts</title>
+    <style>
+    html,body { height:100%; width:100%; margin:0; padding:0;align:left;valign:left;}
+    </style>
+</head>
+<body>
+	 <!-- 默认的样式 -->
+     <!--<div id="main" style="height:190px;width:100%;border:0px;text-align:left;align:left;valign:left;"></div> -->
+
+	<div id="main" style="height:400px;width:94%;border:1px solid #ccc;padding:10px;"></div>
+	
+
+    <!-- ECharts单文件引入 -->
+    <script src="./js/echarts.js"></script>
+    <script type="text/javascript">
+
+
+    var options = {  
+		color:['#00448a','#0580b9','#28c6b9','#84e6f1','#dddddd'],
+			title : {
+				text: '数据图形展示',
+				subtext: '打豆豆...',
+				textStyle: {
+					fontSize: 18,
+					fontWeight: 'bolder',
+					color: '#f0f'          // 主标题文字颜色
+				},
+				 itemGap: 10, 
+				 subtextStyle: {
+					color: '#f00'          // 副标题文字颜色
+				}
+			},
+			tooltip : {
+				trigger: 'item',          //触发器
+				showDelay: 20,            
+				hideDelay: 100,          
+				transitionDuration : 0.4, 
+				backgroundColor: 'rgba(255,218,185, 0.9)',    
+				borderColor: '#f00',      
+				borderRadius: 10,       
+				borderWidth: 0 ,       
+				padding: 5,              
+									 
+				axisPointer : {          
+					type : 'line',        
+					lineStyle : {      
+						color: '#48b',
+						width: 2,
+						type: 'solid'
+					},
+					shadowStyle : {               
+						width: 'auto',            
+						color: 'rgba(0,0,250,0.5)' 
+					}
+				},
+				textStyle: {
+					color: '#00f'
+				}
+			},
+			
+			 toolbox: {  
+				show : true,
+				orient: 'vertical', 			
+				feature : {
+					mark : {show: false}, 
+					dataView : {show: true, readOnly: false},
+					magicType : {show: true, type: ['line', 'bar']}, 
+					restore : {show: true},
+					saveAsImage : {show: false}
+				}
+			},
+	
+           yAxis : [  
+               {  
+                   type : 'category', 
+				   axisLabel:{
+                           interval:0,
+                         margin:2,
+                         textStyle:{
+                             color:"#222"
+                         }
+                     }//,				   
+					// data:nameArray
+                   //data : ['课桌A','躺椅B','笔记本C','台式机D','传呼机E','兔子机F']  
+               }  
+           ],  
+           xAxis : [  
+               {  
+                   type : 'value'  ,
+				   position:'top',
+				   axisLabel: {
+						show: true,
+						interval: 'auto',
+						formatter: '{value} %'
+					}
+               }  
+           ],  
+		   legend: {
+				data:['代表什么呢?'],
+				borderColor: '#ccc',
+				color:['#1e9000','#f0ffff'],
+				textStyle: {
+					color: '#60f'          
+				}
+			}	,
+           series : [  
+               {  
+                   name:'利用率(%)',  
+                   type:'bar',  
+				   itemStyle: {
+						normal: {                   // 系列级个性化显示xx%
+							borderRadius: 5,
+							label : {
+							  show : true,position:'right',formatter:'{c}%'
+							}
+						}
+						
+					}//,
+					//barWidth:16,
+                   //data:dataArray  
+				   //data:arr
+  
+               } 
+			   
+           ]  
+       };
+
+
+       var arr = null;
+       //创建柱状图  
+       function createBarChart(nameArray,dataArray){  
+
+		var countNum = dataArray.length;
+		arr = [];
+		if( Number(countNum) > 1 ){
+			for(var i=0; i<Number(countNum); i++ ){
+				var colorvalue = 'gray';
+				var seq = Number(i) % 12 ;
+				switch( Number(seq) ){
+				   case 1: colorvalue = '#009966';
+					break;
+				   case 2: colorvalue = '#00CC33';
+					break;
+				   case 3: colorvalue = '#99FF00';
+					break;
+				   case 4: colorvalue = '#99CC00';
+					break;
+				   case 5: colorvalue = '#CCCC66';
+					break;
+				   case 6: colorvalue = '#CCFF66';
+					break;
+				   case 7: colorvalue = '#996600';
+					break;
+				   case 8: colorvalue = '#CC9933';
+					break;
+				   case 9: colorvalue = '#CC9966';
+					break;
+				   case 10: colorvalue = '#993333';
+					break;
+				   case 11: colorvalue = '#CC3333';
+					break;
+				   case 12: colorvalue = '#CC0000';
+					break;
+				   default:
+						colorvalue = 'gray';
+					break;
+				}//switch结束
+
+				var temp=  {
+					value:dataArray[i],
+					itemStyle:{
+					normal:{
+							 color:colorvalue
+							}//normal结束
+					}//itemStyle结束
+				 }//temp结束
+				arr.push(temp);
+			}//for结束
+		}else { //if结束 
+			arr = dataArray;
+		}
+                     
+   }  
+       
+
+    function createChart(chartKind,nameArray,dataArray){  
+           if (chartKind=='bar') {  
+				var count = dataArray.length;
+				var numbei = Number(count) / 10 ;
+				if(  Number(numbei) == 0 ){
+					document.getElementById('main').style.height='90%';
+				}else
+				if( Number(numbei) == 1){
+					document.getElementById('main').style.height='150%';
+				}else  {
+					var totalwidthper = Number(numbei)*70 ;
+					totalwidthper = Number(totalwidthper)+Number(100);
+					totalwidthper = totalwidthper+'%';
+					document.getElementById('main').style.height=totalwidthper;
+			   }
+			   // 颜色处理
+			   createBarChart(nameArray,dataArray);
+			   // 具体展现
+			   doCreatChart(nameArray,arr);
+           };  
+       }  
+       
+       
+    function doCreatChart(nameArray,dataArray){  
+  
+           require(  
+           ['echarts','echarts/theme/macarons','echarts/chart/line',  
+           'echarts/chart/bar','echarts/chart/pie'  
+           ],  
+           function(ec,theme){
+				var ecConfig = require('echarts/config'); //我在这里		   
+				myChart =ec.init(document.getElementById('main'),theme);  
+				myChart.on('click', function (param) {
+
+						   alert('点击了我！');
+				});
+				myChart.showLoading({    
+				   text : "图表数据正在努力加载..."    
+			   });   
+			     
+			   options.yAxis[0].data = nameArray;
+			   options.series[0].data = dataArray; 
+			   myChart.setOption(options); //先把可选项注入myChart中   
+			   myChart.hideLoading();
+		  
+		  
+			   myChart.on(ecConfig.EVENT.CLICK, eConsole);
+		   
+		   
+           }  
+       );  
+       } 
+
+
+       /**
+	   * 响应点击事件
+	   */
+	   function eConsole(param) {
+        switch (param.dataIndex) {
+            case 0:    //柱子1
+			
+                //window.location.href = "http://blog.sina.com.cn/";
+				//document.getElementById('maintemp').onload='javascript:eiur.aa()';
+				//window.location.href = "<a href='javascript:eiur.aa()'>"+ "</a>";
+				//"<a href='javascript:contact.call(\""+ jsonobjs[y].phone+ "\")'>"+ jsonobjs[y].phone+ "</a>";
+				//"javascript:eiur.aa()";
+				//exe(param.dataIndex);
+                break;
+            case 1:  //柱子2
+				//exe(param.dataIndex);
+                //window.location.href = "http://www.baidu.com";
+                break;
+            case 2:  //柱子3
+				//exe(param.dataIndex);
+                //window.location.href = "http://www.hao123.com/";
+                break;
+            default:
+			  //window.location.href = "http://www.w3school.com.cn/";
+			  // exe(param.dataIndex);
+                break;
+               
+        }
+
+
+    } 
+
+
+	function exe(param){  
+		window.eiur.execute(param+'我是从js里面来的数据...');  
+    }       
+       
+    function refershView(xAxisArray,dataArray){
+       option = {
+            title : {
+                show:false
+            },
+            tooltip : {
+                show:false
+            },
+
+            toolbox: {
+                show : false,
+            },
+            xAxis : 
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data :xAxisArray,
+                    axisLabel:{
+                        interval:0
+                    }
+                    
+                }
+            ,
+            yAxis : 
+                {
+                    type : 'value',
+                    splitNumber: 4,
+                    axisLabel : {
+                    formatter: '{value}w'
+                    }            
+                }
+            ,
+            series : [
+                {
+                    name:'num',
+                    type:'line',
+                    smooth:true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'},label : {show: true, 
+                        position: 'top',formatter :'{c}'
+                    }}},
+                    data:dataArray
+                }
+            ],
+          grid:{ x:40,y:20,x2:20,y2:22 },
+         	animation:false
+        };
+        
+        
+        require.config({
+            paths: {
+                echarts: './js'
+            }
+        });
+        require(
+            ['echarts','echarts/theme/macarons','echarts/chart/line','echarts/chart/funnel'  
+            ],
+            function (ec,theme) {
+               var myChart=ec.init(document.getElementById('main'),theme); 
+                   myChart.setOption(option); 
+            }
+        );
+        };
+
+    </script>
+</body>

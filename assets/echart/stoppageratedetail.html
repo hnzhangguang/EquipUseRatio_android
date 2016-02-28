@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="gbk">
+    <title>ECharts</title>
+    <style>
+    html,body { height:100%; width:100%; margin:0; padding:0;align:left;valign:left;}
+    </style>
+</head>
+<body>
+	 <!-- 默认的样式 -->
+     <!--<div id="main" style="height:190px;width:100%;border:0px;text-align:left;align:left;valign:left;"></div> -->
+
+	<div id="main" style="height:300px;width:93%;border-top:1px solid #ccc;padding:10px;"></div>
+	
+
+    <!-- ECharts单文件引入 -->
+    <script src="./js/echarts.js"></script>
+    <script type="text/javascript">
+    var height = 300;
+    var options = {  
+		title : {show:false},
+		grid: {
+			x:80,
+			y:20,
+			x2:50,
+			y2:10
+			
+		},
+		tooltip : {show:false},
+		toolbox: {show : false},
+		yAxis : [  
+		   {  
+				type : 'category', 
+				splitLine:{show:false},
+				//坐标轴线
+				axisLine:{show:false},
+				axisLabel:{
+					interval:0,
+					//margin:2,
+					textStyle:{
+						color:"#222"
+					}
+				}  
+		    }  
+	    ],  
+	    xAxis : [  
+		    {  
+				type : 'value',
+				//分割区域
+				splitArea : {show : false},
+				position:'top',
+				//坐标轴线
+				axisLine:{show:false},
+				//分隔线
+				splitLine: {
+					show: true,
+					lineStyle:{
+						type:"dotted"
+					}},
+				axisLabel: {
+					show: true,
+					interval: 'auto',
+					margin:-4,
+					formatter: '{value} %'
+				}
+		   }  
+	    ],  
+	    legend: {show:false,data:['柱代表什么?'],},
+	    series : [  
+		    {  
+				name:'停机率(%)',  
+				type:'bar', 
+				barCategoryGap:'50%',
+				itemStyle: {
+					normal: {                   // 系列级个性化显示xx%
+						borderRadius: 5,
+						label : {
+						  show : true,position:'right',formatter:'{c}%'
+						},
+						color: function(params) {
+							var colorList = [
+							  '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+							   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+							   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+							];
+							return colorList[params.dataIndex % colorList.length]
+						}
+					}
+				}
+		   } 
+	    ]  
+	};
+    //创建柱状图  
+    function createBarChart(nameArray,dataArray){  
+                
+   }  
+       
+
+    function createChart(chartKind,nameArray,dataArray){  
+		if (chartKind=='bar') {  
+		   if(nameArray) {
+			   adjustBarHeight(nameArray.length);
+		   }
+		   doCreatChart(nameArray,dataArray);  
+	    };  
+    }  
+       
+    function adjustBarHeight(count) {
+     	if(count >= 5) {
+	     	document.getElementById('main').style.height = (((count - 5) / 5) * (height * 0.7) + height) + 'px';
+     	}else {
+     		document.getElementById('main').style.height = (count / 5) * height + 'px';
+     	}
+     }
+       
+       
+    function doCreatChart(nameArray,dataArray){  
+  
+           require(  
+           ['echarts','echarts/theme/macarons','echarts/chart/line',  
+           'echarts/chart/bar','echarts/chart/pie'  
+           ],  
+           function(ec,theme){
+				var ecConfig = require('echarts/config'); //我在这里		   
+				myChart =ec.init(document.getElementById('main'),theme);  
+				myChart.showLoading({    
+				   text : "图表数据正在努力加载..."    
+			    }); 
+				options.yAxis[0].data = nameArray;
+				options.series[0].data = dataArray;			   
+			    myChart.setOption(options); //先把可选项注入myChart中   
+			    myChart.hideLoading();
+		   
+		   
+           }  
+       );  
+    } 
+
+
+	function exe(param){  
+		window.eiur.execute(param+'我是从js里面来的数据...');  
+    }       
+       
+//createChart('bar',['课桌A','躺椅B','笔记本C','台式机D','传呼机E'],[92.28,89.23,85.85,63.18,59.55]);
+//createChart('bar');
+    </script>
+</body>

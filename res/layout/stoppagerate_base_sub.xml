@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- < date > -->
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        layout="@layout/dateselectview"
+        android:orientation="vertical" />
+    <!-- 三个球 -->
+
+    <LinearLayout
+        android:id="@+id/linearlayoutroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="3dp" >
+
+        <com.yonyou.am.mob.tool.CircleView
+            android:id="@+id/leftcircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp" />
+
+        <com.yonyou.am.mob.tool.CircleView
+            android:id="@+id/middlecircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <com.yonyou.am.mob.tool.CircleView
+            android:id="@+id/rightcircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <WebView
+            android:id="@+id/chartshow_wbusedepart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/cover_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#11000000"
+            android:visibility="visible" />
+    </FrameLayout>
+
+</LinearLayout>

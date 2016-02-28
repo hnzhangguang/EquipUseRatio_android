@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:padding="5dp"
+    android:orientation="vertical" >
+
+    <com.yonyou.am.mob.tool.CircleView
+            android:id="@+id/circle_view"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/org_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:singleLine="false" 
+        android:ellipsize="end"
+        android:gravity="center_horizontal" 
+        android:maxLines="3"
+        android:textIsSelectable="false"/>
+
+
+</LinearLayout>

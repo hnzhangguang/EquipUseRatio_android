@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dateselectviewcorelayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="horizontal" >
+
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="0dp" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_weight="2" -->
+    <!-- android:orientation="horizontal" > -->
+    <!-- </LinearLayout> -->
+
+
+    <!-- <LinearLayout -->
+    <!-- android:layout_width="wrap_content" -->
+    <!-- android:layout_height="wrap_content" -->
+    <!-- android:layout_gravity="center" -->
+    <!-- android:orientation="horizontal" > -->
+
+    <View
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:layout_width="0dp" />
+    
+    <ImageView
+            android:id="@+id/leftbutton"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_left" />
+<View
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_width="0dp" />
+<!--     <Button -->
+<!--         android:id="@+id/leftbutton" -->
+<!--         android:layout_width="20dp" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:layout_gravity="left|center_vertical" -->
+<!--         android:background="@drawable/dateleftselector" /> -->
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="0000-00"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+<View
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_width="0dp" />
+    <ImageView
+            android:id="@+id/rightbutton"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_right" />
+<!--     <Button -->
+<!--         android:id="@+id/rightbutton" -->
+<!--         android:layout_width="20dp" -->
+<!--         android:layout_height="match_parent" -->
+<!--         android:layout_gravity="left|center_vertical" -->
+<!--         android:background="@drawable/datelrightselector" /> -->
+
+    <View
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:layout_width="0dp" />
+    <!-- </LinearLayout> -->
+
+
+    <!-- <TextView -->
+    <!-- android:layout_width="0dp" -->
+    <!-- android:layout_height="match_parent" -->
+    <!-- android:layout_weight="2" /> -->
+
+</LinearLayout>

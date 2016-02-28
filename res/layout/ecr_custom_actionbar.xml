@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+	 android:layout_height="wrap_content"
+	 
+     >
+     <LinearLayout 
+         android:id="@+id/barview"
+         android:layout_width="match_parent"
+	     android:layout_height="46dp"
+	     android:background="@color/white"
+	     android:orientation="horizontal"
+	     android:paddingLeft="8dp"
+         >
+        <Button
+            android:id="@+id/backbutton"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/btn_back2x"
+            android:text="@string/leftback"
+            android:textColor="@color/red" 
+            android:textSize="@dimen/ecr_action_bar_back"
+            />
+        <TextView
+            android:id="@+id/titletext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="50dp"
+            android:text="@string/ecr_maintitle"
+            android:textSize="@dimen/ecr_action_bar_title" />
+	</LinearLayout>
+		<TextView 
+        android:background="@color/red"
+        android:layout_height="2dp" 
+        android:layout_width="match_parent"
+        android:layout_below="@id/barview"
+        android:layout_alignLeft="@id/barview"
+        />
+</RelativeLayout>

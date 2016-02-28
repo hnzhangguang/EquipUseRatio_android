@@ -1,0 +1,12 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+	<dimen name="zero">0dp</dimen>
+    <dimen name="ecr_action_bar_back">20dp</dimen>
+	<dimen name="ecr_action_bar_title">22dp</dimen>
+	<dimen name="left_circle">17dp</dimen>
+	<dimen name="middle_circle">20dp</dimen>
+	<dimen name="right_circle">17dp</dimen>
+</resources>

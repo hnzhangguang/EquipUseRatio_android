@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">EquipInUseRatio</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+	<string name="leftback">返回</string>
+	<string name="ecr_maintitle">设备完成率</string>
+	<string name="equipnogoodtitle">不完好设备</string>
+	<string name="goodrate">完好率</string>
+	<string name="goodequipnum">完好台数</string>
+	<string name="badequipnum">不完好台数</string>
+	<string name="searchview_hint">请输入要搜索的内容</string>
+	<string name="asc">升序</string>
+	<string name="desc">降序</string>
+	<string name="stoppagerate">故障停机率</string>
+</resources>

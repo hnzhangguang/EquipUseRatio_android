@@ -1,0 +1,58 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/red" />
+    
+	<LinearLayout
+		android:id="@+id/linearlayoutdate"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="40dp">
+		<!-- <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="2dp"/>  -->
+
+
+		
+		
+
+	</LinearLayout>
+	 
+        
+	<LinearLayout
+	    android:id="@+id/searchLinearlayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="40dp"
+	    android:orientation="vertical"
+	    >
+	    
+	   <!--  <SearchView 
+	        android:id="@+id/searchview"
+	        android:background="@drawable/bg_white2x"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        ></SearchView> -->
+	    
+	</LinearLayout>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+	<TableLayout 
+	    android:id="@+id/tablelayout"
+	    android:background="@color/white"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:paddingLeft="1dp"
+	    android:paddingRight="1dp"
+	    ></TableLayout>
+	</ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="gbk">
+    <title>ECharts</title>
+    <style>
+    html,body { height:100%; width:100%; margin:0; padding:0;align:left;valign:left;}
+    </style>
+</head>
+<body>
+    <div id="main" style="height:190px;width:100%;border:0px;text-align:left;align:left;valign:left;"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="./js/echarts.js"></script>
+    <script type="text/javascript">
+    var options = null;
+    
+       //创建折线图  
+       function createLineChart(dataArray){  
+       options = {  
+       xAxis : [  
+           {  
+               type : 'category',  
+               boundaryGap : false,  
+               data : ['第一种','第二种','第三种']  
+           }  
+       ],  
+       yAxis : [  
+           {  
+               type : 'value'  
+           }  
+       ],  
+       series : [  
+           {  
+               name:'利用率',  
+               type:'line',  
+               smooth:true,  
+               itemStyle: {normal: {areaStyle: {type: 'default'}}},  
+               data:dataArray  
+            }  
+           ]  
+       };  
+   }  
+       
+       
+       //创建柱状图  
+       function createBarChart(dataArray){  
+        options = {  
+		color:['#00448a','#0580b9','#28c6b9','#84e6f1','#dddddd'],
+			title : {
+				text: '伪数据展示',
+				subtext: '逗你玩^^',
+				textStyle: {
+					fontSize: 18,
+					fontWeight: 'bolder',
+					color: '#0f0'          // 主标题文字颜色
+				},
+				 itemGap: 10, 
+				 subtextStyle: {
+					color: '#f00'          // 副标题文字颜色
+				}
+			},
+			tooltip : {
+				trigger: 'item',          
+				showDelay: 20,            
+				hideDelay: 100,          
+				transitionDuration : 0.4, 
+				backgroundColor: 'rgba(255,218,185, 0.9)',    
+				borderColor: '#f00',      
+				borderRadius: 10,       
+				borderWidth: 0 ,       
+				padding: 5,              
+									 
+				axisPointer : {          
+					type : 'line',        
+					lineStyle : {      
+						color: '#48b',
+						width: 2,
+						type: 'solid'
+					},
+					shadowStyle : {               
+						width: 'auto',            
+						color: 'rgba(0,0,250,0.5)' 
+					}
+				},
+				textStyle: {
+					color: '#00f'
+				}
+			},
+			
+			 toolbox: {  
+				show : true,
+				orient: 'vertical', 			
+				feature : {
+					mark : {show: false}, 
+					dataView : {show: true, readOnly: false},
+					magicType : {show: true, type: ['line', 'bar']}, 
+					restore : {show: true},
+					saveAsImage : {show: false}
+				}
+			},
+	
+           xAxis : [  
+               {  
+                   type : 'category', 
+				   axisLabel:{
+                           interval:0,
+                         rotate:45,
+                         margin:2,
+                         textStyle:{
+                             color:"#222"
+                         }
+                     },				   
+                   data : ['课桌A','躺椅B','笔记本C','台式机D','传呼机E','兔子机F']  
+               }  
+           ],  
+           yAxis : [  
+               {  
+                   type : 'value'  
+               }  
+           ],  
+		   legend: {
+				data:['柱代表什么?'],
+				borderColor: '#ccc',
+				color:['#1e9000','#f0ffff'],
+				textStyle: {
+					color: '#00f'          
+				}
+			}	,
+           series : [  
+               {  
+                   name:'利用率(%)',  
+                   type:'bar',  
+                   data:dataArray  
+  
+               } 
+			   
+           ]  
+       };  
+                     
+   }  
+       
+       
+       
+       //创建饼状图  
+       function createPieChart(dataArray){  
+		   var array = (dataArray+"").split("\,");
+		   options = {  
+			   toolbox: {
+					show : false,
+					feature : {
+						mark : {show: true},
+						dataView : {show: true, readOnly: false},
+						magicType : {
+							show: true, 
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore : {show: true},
+						saveAsImage : {show: true}
+					}
+				},
+				calculable : false,
+				//legend: {
+				//	orient : 'vertical',
+				//	x : 'left',
+				//	data:['用友股份','用友金融','用友政务','用友郑州分公司','用友南昌事业部','用友深圳分公司']
+				//},
+			   series : [  
+				   {  
+					   type:'pie',  
+					   radius : '55%',  
+					   center: ['50%', '60%'],  
+					   data:[  
+						   {value:array[0], name:'用友股份'},  
+						   {value:array[1], name:'用友金融'},  
+						   {value:array[2], name:'用友政务'},  
+						   {value:array[3], name:'用友郑州分公司'},  
+						   {value:array[4], name:'用友南昌事业部'},  
+						   {value:array[5], name:'用友深圳分公司'} 
+					   ]  
+				   }  
+			   ]  
+		   };  
+		}  
+   
+   
+    function createChart(chartKind,dataArray){  
+           if (chartKind=='line') {  
+               doCreatChart(createLineChart(dataArray));  
+           };  
+           if (chartKind=='bar') {  
+               doCreatChart(createBarChart(dataArray));  
+           };  
+           if (chartKind=='pie') {  
+               doCreatChart(createPieChart(dataArray));  
+           };  
+       }  
+       
+       
+    function doCreatChart(specificChartFunction){  
+  
+           require(  
+           ['echarts','echarts/theme/macarons','echarts/chart/line',  
+           'echarts/chart/bar','echarts/chart/pie'  
+           ],  
+           function(ec,theme){
+				var ecConfig = require('echarts/config'); //我在这里		   
+				myChart =ec.init(document.getElementById('main'),theme);  
+				myChart.on('click', function (param) {
+
+						   alert('点击了我！');
+				});
+				myChart.showLoading({    
+				   text : "图表数据正在努力加载..."    
+			   });   
+			   specificChartFunction;  
+			   myChart.setOption(options); //先把可选项注入myChart中    
+			   myChart.hideLoading();   
+		  
+		  
+			   myChart.on(ecConfig.EVENT.CLICK, eConsole);
+		   
+		   
+           }  
+       );  
+       } 
+       
+       function eConsole(param) {
+        switch (param.dataIndex) {
+            case 0:    //柱子1
+			
+              //  window.location.href = "http://blog.sina.com.cn/";
+                break;
+            case 1:  //柱子2
+			
+              //  window.location.href = "http://www.baidu.com";
+                break;
+            case 2:  //柱子3
+			
+             //   window.location.href = "http://www.hao123.com/";
+                break;
+            default:
+			// window.location.href = "http://www.w3school.com.cn/";
+                break;
+               
+        }
+
+
+    } 
+       
+    function refershView(xAxisArray,dataArray){
+       option = {
+            title : {
+                show:false
+            },
+            tooltip : {
+                show:false
+            },
+
+            toolbox: {
+                show : false,
+            },
+            xAxis : 
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data :xAxisArray,
+                    axisLabel:{
+                        interval:0
+                    }
+                    
+                }
+            ,
+            yAxis : 
+                {
+                    type : 'value',
+                    splitNumber: 4,
+                    axisLabel : {
+                    formatter: '{value}w'
+                    }            
+                }
+            ,
+            series : [
+                {
+                    name:'num',
+                    type:'line',
+                    smooth:true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'},label : {show: true, 
+                        position: 'top',formatter :'{c}'
+                    }}},
+                    data:dataArray
+                }
+            ],
+          grid:{ x:40,y:20,x2:20,y2:22 },
+         	animation:false
+        };
+        
+        
+        require.config({
+            paths: {
+                echarts: './js'
+            }
+        });
+        require(
+            ['echarts','echarts/theme/macarons','echarts/chart/line','echarts/chart/funnel'  
+            ],
+            function (ec,theme) {
+               var myChart=ec.init(document.getElementById('main'),theme); 
+                   myChart.setOption(option); 
+            }
+        );
+        };
+
+    </script>
+</body>

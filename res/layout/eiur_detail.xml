@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/red" />
+    <!-- < date > -->
+	<LinearLayout
+		android:id="@+id/linearlayoutdate"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="40dp">
+		
+		
+		
+	</LinearLayout>
+	<!-- <TextView
+		android:id="@+id/horizontalline"
+		android:layout_width="match_parent"
+		android:layout_height="1.5dp"
+		android:background="@color/red" /> -->
+	<!-- 三个球 -->
+	<LinearLayout
+	    android:id="@+id/linearlayoutroll"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:paddingTop="3dp"
+	    android:gravity="center"
+	    >
+	    
+	    <com.yonyou.am.mob.tool.CircleView 
+	        android:id="@+id/leftcircle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    <TextView
+			android:layout_height="1dp"
+			android:layout_width="10dp" />
+	    <com.yonyou.am.mob.tool.CircleView 
+	        android:id="@+id/middlecircle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	     <TextView
+			android:layout_height="1dp"
+			android:layout_width="10dp" />
+	    <com.yonyou.am.mob.tool.CircleView 
+	        android:id="@+id/rightcircle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        />
+	    
+	</LinearLayout>
+ 	<TextView
+		android:layout_height="3dp"
+		android:layout_width="match_parent" />
+
+	<!-- 三个圆下面的线条 -->
+	<!-- <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:background="@drawable/line_space_gray" /> -->
+
+	<WebView 
+	    android:id="@+id/chartshow_wbusedepart"
+	    android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+	    />  
+    
+
+</LinearLayout>

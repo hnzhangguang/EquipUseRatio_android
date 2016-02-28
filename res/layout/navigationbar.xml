@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:paddingLeft="5dp" 
+        android:paddingRight="5dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/fanhuibutton"
+            android:layout_width="66dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/fanhuibutton"
+            android:text="返回"
+           android:textColor="@drawable/fanhuifontcolor" />
+
+        <TextView
+            android:id="@+id/biaotitextview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="设备利用率"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/biaotitextviewnull"
+            android:layout_width="66dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <!-- <TextView 
+        android:background="@color/red"
+        android:layout_height="2dp" android:layout_width="match_parent"
+        /> -->
+</LinearLayout>

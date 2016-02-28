@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="gbk">
+    <title>ECharts</title>
+    <style>
+    html,body { height:100%; width:100%; margin:0; padding:0;align:left;valign:left;}
+    </style>
+</head>
+<body>
+
+	 <!-- 默认的样式 -->
+     <!--<div id="main" style="height:188px;width:100%;border:0px;text-align:left;align:left;valign:left;"></div> -->
+
+		<div id="main" style="height:99%;width:100%;border:1px solid #ccc;position:relative;margin:0 0 0 0px;padding:0;border-right:0;border-left:0;"></div>
+	
+
+    <!-- ECharts单文件引入 -->
+    <script src="./js/echarts.js"></script>
+    <script type="text/javascript">
+	//类别显示名称每一行最大字符数(中文占两个单位长度)
+	var CATEGORY_MAX_LENGTH = 10;
+    var myChart;
+	//屏幕可见区域宽度
+	var windowWidth = document.body.offsetWidth;
+	//左边距
+	var paddingLeft = 3;
+	//右边距
+	var paddingRight = 3;
+	//每个柱子的宽度--包括柱子的间距(默认一屏显示5个)
+	var widthBar = (windowWidth - paddingLeft - paddingRight) / 5;
+    var options = {  
+		title : {show:false},
+		grid: {
+			x:paddingLeft,
+			x2:paddingRight, 
+			y:25,
+			y2:80
+		},
+		tooltip : {show:false},
+		toolbox: {show : false},
+	
+	    xAxis : [  
+		    {  
+				type : 'category', 
+				//分割区域
+				splitArea : {show : false},
+				//坐标轴线
+				axisLine:{show:false},
+				//分隔线
+				splitLine:{show:false},
+				axisLabel:{
+					interval:'cunstom',
+					margin:2,
+					//rotate:30,
+					textStyle:{
+						align:'center',
+						line_height:15
+					 },
+					formatter:function(str) {
+						if(str) {
+							var result = [str];
+							var length = CATEGORY_MAX_LENGTH;
+							formatterStr(result, length);
+							return result.join('\n');
+						}
+					}
+				}
+			}
+	   ],  
+	   yAxis : [
+			{
+				type : 'value',
+				//分割区域
+				splitArea : {show : false},
+				//坐标轴线
+				axisLine:{show:false},
+				//分隔线
+				splitLine: {
+					show: true,
+					lineStyle:{
+						type:"dotted"
+					}},
+				//坐标轴文本标签
+				axisLabel: {show: false}                 
+			}
+		], 
+		legend: {show:false,data:['柱代表什么?'],},
+	    series : [  
+		    {  
+			    name:'停机率(%)',  
+			    type:'bar', 
+			    barCategoryGap:'70%',
+			    itemStyle: {
+					normal: {                   
+						borderRadius: 5,
+						label : {
+						  show : true,position:'top',formatter:'{c}%'
+						},
+						color: function(params) {
+							var colorList = [
+							  '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+							   '#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+							   '#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+							];
+							return colorList[params.dataIndex % colorList.length]
+						}
+					},
+					emphasis:{
+						//color:'#ff0',
+						barBorderColor:'#f00',
+						barBorderWidth:3,
+						label:{
+						  show:true,
+						  position:'top',
+						  textStyle:{
+							color:'#f00'
+						  }
+
+						}
+					}
+				},
+            } 
+			   
+        ]  
+    };
+	
+	/**
+	* 格式化字符串
+	* @param result 格式化的字符串创建的数组(格式化以后每个字串时一个元素)
+	* @param length 字符串每个字串的最大长度(中文为2个单位长度)
+	*/
+	function formatterStr(result, length) {
+		if(getStringLen(result[result.length - 1]) > length) {
+			var splitStr = getLimitedLengthStr(result[result.length - 1], length);
+			result[result.length - 1] = splitStr[0];
+			result[result.length] = splitStr[1]; 
+			if(formatterStr(result, length)) {
+				return true;
+			}
+		}else {
+			return true;
+		}
+	}
+	/**
+	* 将给定字符串划分为限长和剩余的两段
+	* @param str 字符串
+	* @param length 长度(中文为2个单位长度)
+	* @return Array 第一个元素为长度为length的子串，第二个元素为剩余的子串
+	*/
+	function getLimitedLengthStr(str, length) {
+		if(getStringLen(str) <= length) {
+			return;
+		}
+		var realLength = 0;
+		var totalLength = str.length;
+		var find = false;
+		for(var i = 0;i < totalLength;i++) {
+			var charA = str.charAt(i);
+			realLength += getStringLen(charA);
+			if(length - realLength < 0) {
+				return [str.substring(0, i), str.substring(i)];
+			}
+		}
+	}
+	/**
+	* 取得字符串的长度，中文为两个单位长度
+	* @param str 字符串
+	*/
+	function getStringLen(str) {
+		if(str) {
+			var length = str.length;
+			var realLenth = length;
+			for(var i = 0;i < length;i++) {
+				var charCode = str.charCodeAt(i);
+				if (charCode < 0 || charCode > 128) {
+					realLenth += 1;
+				}
+			}
+			return realLenth;
+		}
+		return 0;
+    }
+
+	//创建图表，Java端调用
+    function createChart(chartKind,nameArray,dataArray){  
+           if (chartKind=='bar') {  
+			   if(nameArray) {
+				   adjustBarWidth(nameArray.length);
+	               doCreatChart(nameArray,dataArray);  
+			   }
+           };  
+
+            
+       } 
+     
+	//调整柱状图的宽度，以及左右边距
+    function adjustBarWidth(count) {
+     	if(count >= 5) {
+			options.grid.x = paddingLeft;
+			options.grid.x2 = paddingRight;
+	     	document.getElementById('main').style.width = (paddingLeft + paddingRight + count * widthBar) + 'px';
+     	}else {
+			var windowWidth = document.body.offsetWidth;
+			options.grid.x = (windowWidth - count * widthBar) / 2;
+			options.grid.x2 = (windowWidth - count * widthBar) / 2;
+     		document.getElementById('main').style.width = "100%";
+     	}
+    } 
+       
+    
+	//根据传入的name数组和data数组，创建图表
+    function doCreatChart(nameArray,dataArray){  
+		//如果只刷新数据，不重新初始化echarts，会导致android手机端图表显示宽度不更新
+    	//if(!myChart) {
+		if(true) {
+           require(  
+           ['echarts','echarts/theme/macarons','echarts/chart/line',  
+           'echarts/chart/bar','echarts/chart/pie'  
+           ],function(ec,theme){
+						var ecConfig = require('echarts/config'); //我在这里		   
+						myChart =ec.init(document.getElementById('main'),theme); 
+						myChart.showLoading({    
+						   text : "图表数据正在努力加载..."    
+					   });   
+					   options.xAxis[0].data = nameArray;
+					   options.series[0].data = dataArray;
+					   myChart.setOption(options); //先把可选项注入myChart中   
+					   myChart.hideLoading();   
+				  
+				  
+					   myChart.on(ecConfig.EVENT.CLICK, eConsole);
+		   
+		   
+           		}  
+      		 );  
+    		
+    	}else {
+    		   options.xAxis[0].data = nameArray;
+			   options.series[0].data = dataArray;
+			   myChart.setOption(options); 
+			   myChart.refresh();
+    	}
+  
+    } 
+
+
+    /**
+	* 响应点击事件
+	*/
+	function eConsole(param) {
+		exe(param.dataIndex);
+    } 
+
+
+	function exe(param){ 
+		window.stoppage.execute(param);  
+    }
+    
+    function logMsg(param) {
+    	if(window.stoppage && window.stoppage.logMsg) {
+	    	window.stoppage.logMsg(param);  
+    	}
+    }
+    
+    
+//createChart('bar',['记本C笔记本C0','躺椅课笔记本C笔记本C笔记本C笔记本C笔记本C笔记本C笔记本C笔记本C笔记本C笔记本B','笔记本C'],[92.28,89.23,85.85]);
+//createChart('bar',['柱状图se0','柱状图显示各个使用部门为统计维度的设备故障1','柱状图显示各个使用部门为统计维度的设备故障2'],[43.71,94.67,8.571]);
+    </script>
+</body>
